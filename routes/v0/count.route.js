@@ -9,7 +9,7 @@ router.get('/zipcode', async (req, res, next) => {
         res.json(
             func.configSuccess({
 
-                query: '/count/zipcode?category=mexican&zipcode=91709',
+                query: req.query,
                 category: 'mexican',
                 zipcode: 91709,
                 count: 12,
@@ -25,9 +25,10 @@ router.get('/zipcode', async (req, res, next) => {
 
 router.get('/area', async (req, res, next) => {
     try {
+        
         res.json(func.configSuccess({
-                query: 'category=chinese&lat=33.334423&lng=-117.223234&radius=21',
-                category: 'mexican',
+                query: req.query,
+                category: 'chinese',
                 radius: 21,
                 count: 23,
                 timestamp: new Date()

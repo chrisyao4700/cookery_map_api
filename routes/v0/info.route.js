@@ -4,30 +4,39 @@ const router = express.Router();
 const func = require('od-utility');
 
 
-router.get('/all/detail', async (req, res, next) => {
+router.get('/zipcode', async (req, res, next) => {
     try {
+        res.json(
+            func.configSuccess({
 
-        const resBody = func.configSuccess(
-            await ESZipcodeAction.findAllZipcodeDetail(req.params, req.body, req.query)
+                query: req.query,
+                category: 'mexican',
+                zipcode: 91709,
+                count: 12,
+                timestamp: new Date()
+
+            })
         );
-
-        res.json(resBody);
     } catch (e) {
         next(e);
     }
 });
 
-router.get('/detail/code/:code', async (req, res, next) => {
+
+router.get('/area', async (req, res, next) => {
     try {
-        const resBody = func.configSuccess(
-            await ESZipcodeAction.findZipcodeDetail(
-                req.params, req.body, req.query
-            )
+        res.json(func.configSuccess({
+                query: req.query,
+                category: 'chinese',
+                radius: 21,
+                count: 44,
+                timestamp: new Date()
+            })
         );
-        res.json(resBody);
     } catch (e) {
         next(e);
     }
 });
+
 
 module.exports = router;
