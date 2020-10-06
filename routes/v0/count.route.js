@@ -12,27 +12,21 @@ router.get('/zipcode', async (req, res, next) => {
         );
     } catch (e) {
         res.json(
-            func.configFail(e)
-    )
-
-
+            func.configFail(e.message)
+        )
     }
 });
 
 
 router.get('/area', async (req, res, next) => {
     try {
-
-        res.json(func.configSuccess({
-                query: req.query,
-                category: 'chinese',
-                radius: 21,
-                count: 23,
-                timestamp: new Date()
-            })
+        res.json(
+            func.configSuccess(CountAction.findCoundWithArea(req.query))
         );
     } catch (e) {
-        next(e);
+        res.json(
+            func.configFail(e.message)
+        )
     }
 });
 
