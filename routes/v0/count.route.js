@@ -2,20 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const func = require('od-utility');
+const CountAction = require('../../actions/count.action');
 
 
 router.get('/zipcode', async (req, res, next) => {
     try {
         res.json(
-            func.configSuccess({
-
-                query: req.query,
-                category: 'mexican',
-                zipcode: 91709,
-                count: 12,
-                timestamp: new Date()
-
-            })
+            func.configSuccess(CountAction.findCountWithZipcode(req.query))
         );
     } catch (e) {
         next(e);
@@ -25,7 +18,7 @@ router.get('/zipcode', async (req, res, next) => {
 
 router.get('/area', async (req, res, next) => {
     try {
-        
+
         res.json(func.configSuccess({
                 query: req.query,
                 category: 'chinese',
