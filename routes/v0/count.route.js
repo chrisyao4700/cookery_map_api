@@ -11,7 +11,11 @@ router.get('/zipcode', async (req, res, next) => {
             func.configSuccess(CountAction.findCountWithZipcode(req.query))
         );
     } catch (e) {
-        next(e);
+        res.json(
+            func.configFail(e)
+    )
+
+
     }
 });
 
