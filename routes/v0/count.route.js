@@ -7,8 +7,9 @@ const CountAction = require('../../actions/count.action');
 
 router.get('/zipcode', async (req, res, next) => {
     try {
+        // console.log(req.query);
         res.json(
-            func.configSuccess(CountAction.findCountWithZipcode(req.query))
+            func.configSuccess(await CountAction.findCountWithZipcode(req.query))
         );
     } catch (e) {
         res.json(
@@ -21,7 +22,7 @@ router.get('/zipcode', async (req, res, next) => {
 router.get('/area', async (req, res, next) => {
     try {
         res.json(
-            func.configSuccess(CountAction.findCoundWithArea(req.query))
+            func.configSuccess(await CountAction.findCoundWithArea(req.query))
         );
     } catch (e) {
         res.json(
